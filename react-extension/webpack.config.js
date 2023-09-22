@@ -6,35 +6,57 @@ module.exports = {
   mode: 'development',
   devtool: 'cheap-module-source-map',
   entry: {
-    popup: path.resolve('src/popup/popup.tsx')
+    popup: path.resolve('src/popup/popup.tsx'),
+    options: path.resolve('src/options/options.tsx'),
   },
   module: {
     rules: [
       {
         use: 'ts-loader',
         test: /\.tsx?$/,
-        exclude: /node_modules/
+        exclude: /node_modules/,
+      },
+      {
+        use: ['style-loader', 'css-loader'],
+        test: /\.css$/i,
+      },
+      {
+        type: 'asses/resource',
+        test: /\.(png|svg|jpg|jpeg|gif|woff|woff2|eot|ttf)$/i,
       }
-    ]
+    ],
   },
   plugins: [
     new CopyPlugin({
-      patterns: [{
-        from: path.resolve(__dirname, 'src/static'),
-        to: path.resolve('dist')
-      }]
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'src/static'),
+          to: path.resolve('dist'),
+        },
+      ],
     }),
-    new HtmlWebpackPlugin({
-      title: 'React Extension',
-      filename: 'popup.html',
-      chunks: ['popup'],
-    })
+    ...getHtmlPlugins(['popup', 'options']),
   ],
   resolve: {
-    extensions: [ '.tsx', '.ts', 'js' ]
+    extensions: ['.tsx', '.ts', 'js'],
   },
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist')
-  }
-}; 
+    path: path.resolve(__dirname, 'dist'),
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
+};
+
+function getHtmlPlugins(chunks) {
+  return chunks.map((chunk) => {
+    return new HtmlWebpackPlugin({
+      title: 'React Extension',
+      filename: `${chunk}.html`,
+      chunks: [chunk],
+    });
+  });
+}

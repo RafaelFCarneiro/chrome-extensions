@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import './popup.css';
+import './options.css';
 
 const container = document.createElement('div');
 document.body.appendChild(container);
