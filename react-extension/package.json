@@ -1,0 +1,25 @@
+{
+  "name": "react-extension",
+  "version": "1.0.0",
+  "description": "Chrome extension in React!",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --watch --progress --config webpack.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rafael Carneiro",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@types/react": "^18.2.22",
+    "@types/react-dom": "^18.2.7",
+    "html-webpack-plugin": "^5.5.3",
+    "react-dom": "^18.2.0",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.2.2",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "react": "^18.2.0"
+  }
+}

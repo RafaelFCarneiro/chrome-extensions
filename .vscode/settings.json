@@ -1,5 +1,7 @@
 {
   "cSpell.words": [
     "imdb"
-  ]
+  ],
+  "prettier.singleQuote": true,
+  "prettier.jsxSingleQuote": true
 }
