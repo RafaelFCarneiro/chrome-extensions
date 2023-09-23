@@ -15,8 +15,10 @@
     "@types/react": "^18.2.22",
     "@types/react-dom": "^18.2.7",
     "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.8.1",
     "html-webpack-plugin": "^5.5.3",
+    "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "style-loader": "^3.3.3",
     "ts-loader": "^9.4.4",
@@ -24,8 +26,5 @@
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
     "webpack-merge": "^5.9.0"
-  },
-  "dependencies": {
-    "react": "^18.2.0"
   }
 }
