@@ -1,4 +1,4 @@
 fileignoreconfig:
 - filename: weather-extension/package-lock.json
-  checksum: a63cbfc1c5abacb45fab7bc906f63b74a6d8d5479820709bbb5d0a11fd40eeb4
+  checksum: 5a5cc43368c2093bb8145ad1dd71a6dcc03db734b824001225b068449ea6538c
 version: "1.0"

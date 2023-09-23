@@ -1,56 +1,58 @@
-const path = require('path');
-const CopyPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const path = require("path");
+const CopyPlugin = require("copy-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   entry: {
-    popup: path.resolve('src/popup/popup.tsx'),
-    options: path.resolve('src/options/options.tsx'),
-    background: path.resolve('src/background/background.ts'),
-    contentScript: path.resolve('src/contentScript/contentScript.ts'),
+    popup: path.resolve("src/popup/popup.tsx"),
+    options: path.resolve("src/options/options.tsx"),
+    background: path.resolve("src/background/background.ts"),
+    contentScript: path.resolve("src/contentScript/contentScript.ts"),
   },
   module: {
     rules: [
       {
-        use: 'ts-loader',
+        use: "ts-loader",
         test: /\.tsx?$/,
         exclude: /node_modules/,
       },
       {
-        use: ['style-loader', 'css-loader'],
+        use: ["style-loader", "css-loader"],
         test: /\.css$/i,
       },
       {
-        type: 'asses/resource',
+        type: "asses/resource",
         test: /\.(png|svg|jpg|jpeg|gif|woff|woff2|eot|ttf)$/i,
       },
     ],
   },
   plugins: [
+    new Dotenv(),
     new CleanWebpackPlugin({
       cleanStaleWebpackAssets: false,
     }),
     new CopyPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, 'src/static'),
-          to: path.resolve('dist'),
+          from: path.resolve(__dirname, "src/static"),
+          to: path.resolve("dist"),
         },
       ],
     }),
-    ...getHtmlPlugins(['popup', 'options']),
+    ...getHtmlPlugins(["popup", "options"]),
   ],
   resolve: {
-    extensions: ['.tsx', '.ts', 'js'],
+    extensions: [".tsx", ".ts", "js"],
   },
   output: {
-    filename: '[name].js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: "[name].js",
+    path: path.resolve(__dirname, "dist"),
   },
   optimization: {
     splitChunks: {
-      chunks: 'all',
+      chunks: "all",
     },
   },
 };
@@ -58,7 +60,7 @@ module.exports = {
 function getHtmlPlugins(chunks) {
   return chunks.map((chunk) => {
     return new HtmlWebpackPlugin({
-      title: 'React Extension',
+      title: "React Extension",
       filename: `${chunk}.html`,
       chunks: [chunk],
     });
