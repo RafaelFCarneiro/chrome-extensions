@@ -44,7 +44,7 @@ module.exports = {
     ...getHtmlPlugins(["popup", "options"]),
   ],
   resolve: {
-    extensions: [".tsx", ".ts", "js"],
+    extensions: [".tsx", ".ts", ".js"],
   },
   output: {
     filename: "[name].js",
