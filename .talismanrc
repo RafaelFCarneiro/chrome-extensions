@@ -1,4 +1,8 @@
 fileignoreconfig:
 - filename: weather-extension/package-lock.json
   checksum: ca154d7b749cf9e184e631b3bab7adb93aaa65ffff125bde93eb01fb5f7984cd
+- filename: weather-extension/src/popup/popup.tsx
+  checksum: 8d73e99b8684dab51c6efa8c118548d2c9e7bbbdadbfb554883a413feda7fe3d
+- filename: weather-extension/src/shared/weather.storage.ts
+  checksum: 357750894da5b70849112794b29793e892967e1aea1b41b8878c5b82bc6c7d60
 version: "1.0"

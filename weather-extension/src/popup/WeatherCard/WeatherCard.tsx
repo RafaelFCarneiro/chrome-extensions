@@ -9,8 +9,9 @@ import {
 } from '@mui/material';
 import {
   OpenWeatherData,
+  OpenWeatherTempScale,
   fetchWeatherByCityName,
-} from '../../apis/open-weather.api';
+} from '../../shared/open-weather.api';
 
 const WeatherCardContainer: React.FC<{
   children: React.ReactNode;
@@ -36,13 +37,14 @@ type WeatherCardState = 'loading' | 'error' | 'ready';
 
 const WeatherCard: React.FC<{
   city: string;
+  tempScale: OpenWeatherTempScale;
   onDelete?: () => void;
-}> = ({ city, onDelete }) => {
+}> = ({ city, tempScale, onDelete }) => {
   const [weatherData, setWeatherData] = useState<OpenWeatherData | null>(null);
   const [cardState, setCardState] = useState<WeatherCardState>('loading');
 
   useEffect(() => {
-    fetchWeatherByCityName(city)
+    fetchWeatherByCityName(city, tempScale)
       .then((data) => {
         setWeatherData(data);
         setCardState('ready');
@@ -51,7 +53,7 @@ const WeatherCard: React.FC<{
         console.log(error);
         setCardState('error');
       });
-  }, [city]);
+  }, [city, tempScale]);
 
   if (cardState.includes('loading') || cardState.includes('error'))
     return (
