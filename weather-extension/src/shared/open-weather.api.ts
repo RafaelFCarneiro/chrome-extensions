@@ -19,6 +19,7 @@ export interface OpenWeatherData {
     speed: number;
   };
 }
+export type OpenWeatherTempScale = 'metric' | 'imperial';
 
 export async function fetchWeatherByCityName(
   cityName: string,
@@ -34,4 +35,6 @@ export async function fetchWeatherByCityName(
   return response.json();
 }
 
-export type OpenWeatherTempScale = 'metric' | 'imperial';
+export function getWeatherIconUrl(iconId: string): string {
+  return `http://openweathermap.org/img/wn/${iconId}@2x.png`;
+}
